@@ -21,7 +21,7 @@ SMALL_PAUSE = 3
 MEDIUM_PAUSE = 10
 LARGE_PAUSE = 20    
 
-
+PROFILE_LOCATION_X = 1250
 CURRENTLY_WORKING = True
 
 
@@ -96,29 +96,38 @@ def DetectLocationActive():
         if x != None and y != None:
             return locationPath
     return ''
+    
+def SwitchUser(username):
+    LocateAndClick('./twitterImages/homepageBird.png', SMALL_PAUSE, adjX = -PROFILE_LOCATION_X)
+    LocateAndClick('./twitterImages/multipleProfile.png', SMALL_PAUSE)
+    LocateAndClick(username + ".png", MEDIUM_PAUSE)
+    
 def post(inputJSON):
     assert "text" in inputJSON
     assert len(inputJSON["text"]) <= 280
     
     
-    # Import pywinauto Application class
-    from pywinauto.application import Application
-    # Start a new process and specify a path to the text file
-    app = Application().start('C:/Program Files/BlueStacks_arabica/HD-Player.exe --vmname Nougat32', timeout=WAIT_WINDOW)
-    helper.PauseForEffect(WAIT_WINDOW)
-    dlg_spec = app.window()
+    # # Import pywinauto Application class
+    # from pywinauto.application import Application
+    # # Start a new process and specify a path to the text file
+    # app = Application().start('C:/Program Files/BlueStacks_arabica/HD-Player.exe --vmname Nougat32', timeout=WAIT_WINDOW)
+    # helper.PauseForEffect(WAIT_WINDOW)
+    # dlg_spec = app.window()
 
 
-    # Resize the window
-    x, y = LocateImage('./twitterImages/restore.png')
-    if x != None and y != None:
-        LocateAndClick('./twitterImages/restore.png', SMALL_PAUSE)
-    LocateAndClick('./twitterImages/maximize.png', SMALL_PAUSE)
+    # # Resize the window
+    # x, y = LocateImage('./twitterImages/restore.png')
+    # if x != None and y != None:
+        # LocateAndClick('./twitterImages/restore.png', SMALL_PAUSE)
+    # LocateAndClick('./twitterImages/maximize.png', SMALL_PAUSE)
 
 
-    # Open Application
-    LocateAndClick('./twitterImages/twitterLogo.png', LARGE_PAUSE)
+    # # Open Application
+    # LocateAndClick('./twitterImages/twitterLogo.png', LARGE_PAUSE)
     
+    helper.PauseForEffect(3)
+    # Switch user
+    SwitchUser(inputJSON["user"])
     # Start Tweet
     LocateAndClick('./twitterImages/tweetButton.png', MEDIUM_PAUSE)
     
