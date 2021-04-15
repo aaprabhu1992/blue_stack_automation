@@ -6,15 +6,21 @@ import pywinauto
 import helper
 import twitterPost
 import linkedInPost
+import facebookPost
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-linkedin',
                     type=str,
                     help='LinkedIn JSON')
+parser.add_argument('-facebook',
+                    type=str,
+                    help='Facebook JSON')
 parser.add_argument('-twitter',
                     type=str,
                     help='Twitter JSON')
 args = parser.parse_args()
+
+
 twitterJSON = {}
 try:
     with open(args.twitter, "r") as f:
@@ -22,7 +28,8 @@ try:
 except OSError:
     print("File Read Error")
 helper.PrettyPrintJSON(twitterJSON)
-helper.PauseForEffect(5)
+
+
 linkedinJSON = {}
 try:
     with open(args.linkedin, "r") as f:
@@ -30,7 +37,15 @@ try:
 except OSError:
     print("File Read Error")
 helper.PrettyPrintJSON(linkedinJSON)
-helper.PauseForEffect(5)
+
+facebookJSON = {}
+try:
+    with open(args.facebook, "r") as f:
+        facebookJSON = json.load(f)
+except OSError:
+    print("File Read Error")
+helper.PrettyPrintJSON(facebookJSON)
+
 
 # Import pywinauto Application class
 from pywinauto.application import Application
@@ -51,6 +66,7 @@ helper.LocateAndClick('./common/maximize.png', helper.SMALL_PAUSE)
 
 
 # twitterPost.post(twitterJSON)
-linkedInPost.post(linkedinJSON)
+# linkedInPost.post(linkedinJSON)
+facebookPost.post(facebookJSON)
 
 
