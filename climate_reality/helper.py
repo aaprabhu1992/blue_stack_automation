@@ -52,15 +52,15 @@ def AddAllImages(allLocations):
         imagePath = imagePath.replace("/", "\\")
         if i == 0:
             pyautogui.write(imagePath, interval = 0.1)
-            LocateAndClick('./twitterImages/open.png', SMALL_PAUSE)
+            LocateAndClick('./common/open.png', SMALL_PAUSE)
         else:
-            LocateAndClick('./twitterImages/importImageMore.png', SMALL_PAUSE)
+            LocateAndClick('./common/importImageMore.png', SMALL_PAUSE)
             pyautogui.write(imagePath, interval = 0.1)
-            LocateAndClick('./twitterImages/open.png', SMALL_PAUSE)
+            LocateAndClick('./common/open.png', SMALL_PAUSE)
 
 
 def DeleteAllImages(allLocations):
-    LocateAndClick('./twitterImages/appMedia.png', SMALL_PAUSE, adjX = 700)
+    LocateAndClick('./common/appMedia.png', SMALL_PAUSE, adjX = 700)
     totalLength = len(allLocations)
     for i, imagePath in enumerate(allLocations):
-        LocateAndClick('./twitterImages/home.png', MEDIUM_PAUSE, adjX = 1130, adjY = 1470)
+        LocateAndClick('./common/home.png', MEDIUM_PAUSE, adjX = 1130, adjY = 1470)

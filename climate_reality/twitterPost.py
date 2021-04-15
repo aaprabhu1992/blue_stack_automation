@@ -25,10 +25,10 @@ def CheckForImageQuantity(allLocations):
         exit(1)
 
 def GoToImportPage():
-    helper.LocateAndClick('./twitterImages/home.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./twitterImages/application.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./twitterImages/settings.png', helper.MEDIUM_PAUSE)
-    helper.LocateAndClick('./twitterImages/importImage.png', helper.SMALL_PAUSE)
+    helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
+    helper.LocateAndClick('./common/application.png', helper.SMALL_PAUSE)
+    helper.LocateAndClick('./common/settings.png', helper.MEDIUM_PAUSE)
+    helper.LocateAndClick('./common/importImage.png', helper.SMALL_PAUSE)
 
             
             
@@ -79,10 +79,10 @@ def post(inputJSON):
 
 
     # Resize the window
-    x, y = helper.LocateImage('./twitterImages/restore.png')
+    x, y = helper.LocateImage('./common/restore.png')
     if x != None and y != None:
-        helper.LocateAndClick('./twitterImages/restore.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./twitterImages/maximize.png', helper.SMALL_PAUSE)
+        helper.LocateAndClick('./common/restore.png', helper.SMALL_PAUSE)
+    helper.LocateAndClick('./common/maximize.png', helper.SMALL_PAUSE)
 
 
     # Open Application
@@ -116,7 +116,7 @@ def post(inputJSON):
         allLocations = inputJSON["images"]
         CheckForImageQuantity(allLocations)
         helper.AddAllImages(allLocations)
-        helper.LocateAndClick('./twitterImages/home.png', helper.SMALL_PAUSE)
+        helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
         # Attach Image
         helper.LocateAndClick('./twitterImages/twitterLogo.png', helper.MEDIUM_PAUSE)
         AttachAllImages(allLocations)
@@ -161,10 +161,10 @@ def post(inputJSON):
     if "images" in inputJSON:
         # Add Image from Windows
         GoToImportPage()
-        helper.LocateAndClick('./twitterImages/cancel.png', helper.SMALL_PAUSE)
+        helper.LocateAndClick('./common/cancel.png', helper.SMALL_PAUSE)
         CheckForImageQuantity(inputJSON["images"])
         helper.DeleteAllImages(inputJSON["images"])
-        helper.LocateAndClick('./twitterImages/home.png', helper.SMALL_PAUSE)
+        helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
 
 
         
