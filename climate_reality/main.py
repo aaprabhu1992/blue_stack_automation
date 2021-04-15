@@ -11,40 +11,43 @@ import facebookPost
 parser = argparse.ArgumentParser()
 parser.add_argument('-linkedin',
                     type=str,
-                    help='LinkedIn JSON')
+                    help='LinkedIn JSON', required = False)
 parser.add_argument('-facebook',
                     type=str,
-                    help='Facebook JSON')
+                    help='Facebook JSON', required = False)
 parser.add_argument('-twitter',
                     type=str,
-                    help='Twitter JSON')
+                    help='Twitter JSON', required = False)
 args = parser.parse_args()
 
 
 twitterJSON = {}
-try:
-    with open(args.twitter, "r") as f:
-        twitterJSON = json.load(f)
-except OSError:
-    print("File Read Error")
-helper.PrettyPrintJSON(twitterJSON)
+if args.twitter is not None:
+    try:
+        with open(args.twitter, "r") as f:
+            twitterJSON = json.load(f)
+    except OSError:
+        print("File Read Error")
+    helper.PrettyPrintJSON(twitterJSON)
 
 
 linkedinJSON = {}
-try:
-    with open(args.linkedin, "r") as f:
-        linkedinJSON = json.load(f)
-except OSError:
-    print("File Read Error")
-helper.PrettyPrintJSON(linkedinJSON)
+if args.linkedin is not None:
+    try:
+        with open(args.linkedin, "r") as f:
+            linkedinJSON = json.load(f)
+    except OSError:
+        print("File Read Error")
+    helper.PrettyPrintJSON(linkedinJSON)
 
 facebookJSON = {}
-try:
-    with open(args.facebook, "r") as f:
-        facebookJSON = json.load(f)
-except OSError:
-    print("File Read Error")
-helper.PrettyPrintJSON(facebookJSON)
+if args.facebook is not None:
+    try:
+        with open(args.facebook, "r") as f:
+            facebookJSON = json.load(f)
+    except OSError:
+        print("File Read Error")
+    helper.PrettyPrintJSON(facebookJSON)
 
 
 # Import pywinauto Application class
