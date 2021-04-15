@@ -1,7 +1,6 @@
 # This will assume that twitter is logged in for the account you want to post on
 # When bluestacks is opened, it will be on its home page
 import pyautogui
-import pywinauto
 from pyscreeze import ImageNotFoundException
 import subprocess
 # Improting Image class from PIL module
@@ -70,19 +69,6 @@ def post(inputJSON):
     assert len(inputJSON["text"]) <= 280
     
     
-    # Import pywinauto Application class
-    from pywinauto.application import Application
-    # Start a new process and specify a path to the text file
-    app = Application().start('C:/Program Files/BlueStacks_arabica/HD-Player.exe --vmname Nougat32', timeout=helper.WAIT_WINDOW)
-    helper.PauseForEffect(helper.WAIT_WINDOW)
-    dlg_spec = app.window()
-
-
-    # Resize the window
-    x, y = helper.LocateImage('./common/restore.png')
-    if x != None and y != None:
-        helper.LocateAndClick('./common/restore.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./common/maximize.png', helper.SMALL_PAUSE)
 
 
     # Open Application
