@@ -10,7 +10,7 @@ import helper
 
 TWITTER_CHAR_LIMIT = 280
 TWITTER_IMAGE_SIZE = 400
-MAX_IMAGES = 5
+MAX_IMAGES_TWITTER = 5
 TAG_GAP = 20
 BANNER_GAP = 50
 SCROLL_LENGTH = 300
@@ -19,7 +19,7 @@ PROFILE_LOCATION_X = 1250
 CURRENTLY_WORKING = True
 
 def CheckForImageQuantity(allLocations):
-    if len(allLocations) > MAX_IMAGES:
+    if len(allLocations) > MAX_IMAGES_TWITTER:
         print("Too many Images")
         exit(1)
 
@@ -32,7 +32,7 @@ def GoToImportPage():
             
             
 def AttachAllImages(allLocations):
-    if len(allLocations) > MAX_IMAGES:
+    if len(allLocations) > MAX_IMAGES_TWITTER:
         print("Too many Images")
         exit(1)
     totalLength = len(allLocations)
@@ -62,7 +62,7 @@ def DetectLocationActive():
 def SwitchUser(username):
     helper.LocateAndClick('./twitterImages/homepageBird.png', helper.SMALL_PAUSE, adjX = -PROFILE_LOCATION_X)
     helper.LocateAndClick('./twitterImages/multipleProfile.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick(username + ".png", helper.MEDIUM_PAUSE)
+    helper.LocateAndClick(username + "_twitter.png", helper.MEDIUM_PAUSE)
     
 def post(inputJSON):
     assert "text" in inputJSON
