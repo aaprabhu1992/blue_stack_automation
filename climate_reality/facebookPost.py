@@ -8,7 +8,7 @@ from PIL import Image
 
 import helper
 
-FACEBOOK_IMAGE_SIZE = 400
+FACEBOOK_IMAGE_SIZE = 300
 MAX_IMAGES_FACEBOOK = 2
 SCROLL_LENGTH = 300
 
@@ -18,13 +18,6 @@ def CheckForImageQuantity(allLocations):
     if len(allLocations) > MAX_IMAGES_FACEBOOK:
         print("Too many Images")
         exit(1)
-
-def GoToImportPage():
-    helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./common/application.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./common/settings.png', helper.MEDIUM_PAUSE)
-    helper.LocateAndClick('./common/importImage.png', helper.SMALL_PAUSE)
-
 
 
 def LeavePage():
@@ -54,7 +47,7 @@ def post(inputJSON):
 
     # Add Image from Windows
     if "images" in inputJSON:
-        GoToImportPage()
+        helper.GoToImportPage()
         allLocations = inputJSON["images"]
         CheckForImageQuantity(allLocations)
         helper.AddAllImages(allLocations)
@@ -99,12 +92,12 @@ def post(inputJSON):
     # Attach Image
     if "images" in inputJSON:
         # Add Image from Windows
-        GoToImportPage()
+        helper.GoToImportPage()
         helper.LocateAndClick('./common/cancel.png', helper.SMALL_PAUSE)
         CheckForImageQuantity(inputJSON["images"])
         helper.DeleteAllImages(inputJSON["images"])
-        helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
         
+    helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
 
 
     

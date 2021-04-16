@@ -19,12 +19,6 @@ def CheckForImageQuantity(allLocations):
         print("Too many Images")
         exit(1)
 
-def GoToImportPage():
-    helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./common/application.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./common/settings.png', helper.MEDIUM_PAUSE)
-    helper.LocateAndClick('./common/importImage.png', helper.SMALL_PAUSE)
-
                 
 def SignInUser(inputJSON):
     helper.LocateAndClick(inputJSON["user"] + "_linkedin.png", helper.LARGE_PAUSE)
@@ -75,7 +69,7 @@ def post(inputJSON):
 
     # Add Image from Windows
     if "images" in inputJSON:
-        GoToImportPage()
+        helper.GoToImportPage()
         allLocations = inputJSON["images"]
         CheckForImageQuantity(allLocations)
         helper.AddAllImages(allLocations)
@@ -115,7 +109,7 @@ def post(inputJSON):
     # Attach Image
     if "images" in inputJSON:
         # Add Image from Windows
-        GoToImportPage()
+        helper.GoToImportPage()
         helper.LocateAndClick('./common/cancel.png', helper.SMALL_PAUSE)
         CheckForImageQuantity(inputJSON["images"])
         helper.DeleteAllImages(inputJSON["images"])

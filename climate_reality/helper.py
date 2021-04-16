@@ -10,6 +10,8 @@ MEDIUM_PAUSE = 10
 LARGE_PAUSE = 20    
 WAIT_WINDOW = 40
 
+
+
 def PrettyPrintJSON(jsonObj, jsonIndent = 3):
     print(json.dumps(jsonObj, indent = jsonIndent))
 
@@ -45,6 +47,11 @@ def LocateAndClick(templateImageLocation, waitTime = 0, adjX = 0, adjY = 0, conf
     x, y = LocateImage(templateImageLocation, confidence_input)
     ClickAndWait(x + adjX, y + adjY, waitTime)
 
+def GoToImportPage():
+    LocateAndClick('./common/home.png', SMALL_PAUSE)
+    LocateAndClick('./common/application.png', SMALL_PAUSE)
+    LocateAndClick('./common/settings.png', MEDIUM_PAUSE)
+    LocateAndClick('./common/importImage.png', SMALL_PAUSE)
 
 
 def AddAllImages(allLocations):

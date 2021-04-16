@@ -23,12 +23,6 @@ def CheckForImageQuantity(allLocations):
         print("Too many Images")
         exit(1)
 
-def GoToImportPage():
-    helper.LocateAndClick('./common/home.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./common/application.png', helper.SMALL_PAUSE)
-    helper.LocateAndClick('./common/settings.png', helper.MEDIUM_PAUSE)
-    helper.LocateAndClick('./common/importImage.png', helper.SMALL_PAUSE)
-
             
             
 def AttachAllImages(allLocations):
@@ -98,7 +92,7 @@ def post(inputJSON):
     # Attach Image
     if "images" in inputJSON:
         # Add Image from Windows
-        GoToImportPage()
+        helper.GoToImportPage()
         allLocations = inputJSON["images"]
         CheckForImageQuantity(allLocations)
         helper.AddAllImages(allLocations)
@@ -112,33 +106,37 @@ def post(inputJSON):
     # Add Tags    
     if "images" in inputJSON and "tags" in inputJSON:
         tagClick = ('./twitterImages/tag_1.png', './twitterImages/tag_many.png')[len(inputJSON["images"]) > 1]
-        helper.LocateAndClick(tagClick, helper.SMALL_PAUSE)
-        allTags = inputJSON["tags"]
-        x = None
-        y = None
-        for i, tagValue in enumerate(allTags):
-            if i == 0:
-                x, y = helper.LocateImage('./twitterImages/tagSearch.png')
-                # helper.ClickAndWait(x,y, helper.SMALL_PAUSE)
-                # pyautogui.write(tagValue, interval = 0.1)
-                # helper.ClickAndWait(x,y + (i+1)*TAG_GAP, helper.SMALL_PAUSE)
-            # else:
-            helper.ClickAndWait(x,y, helper.SMALL_PAUSE)
-            pyautogui.press('esc')
-            pyautogui.press('enter')
-            pyautogui.write(tagValue, interval = 0.1)
-            helper.PauseForEffect(helper.SMALL_PAUSE)
-            xTag, yTag = helper.LocateImage('./twitterImages/tagLine.png')
-            helper.ClickAndWait(xTag, yTag + BANNER_GAP/2, helper.SMALL_PAUSE)
-        helper.LocateAndClick('./twitterImages/done.png', helper.SMALL_PAUSE)
+        x, y = helper.LocateImage(tagClick)
+        if x != None and y != None:
+            helper.LocateAndClick(tagClick, helper.SMALL_PAUSE)
+            allTags = inputJSON["tags"]
+            x = None
+            y = None
+            for i, tagValue in enumerate(allTags):
+                if i == 0:
+                    x, y = helper.LocateImage('./twitterImages/tagSearch.png')
+                    # helper.ClickAndWait(x,y, helper.SMALL_PAUSE)
+                    # pyautogui.write(tagValue, interval = 0.1)
+                    # helper.ClickAndWait(x,y + (i+1)*TAG_GAP, helper.SMALL_PAUSE)
+                # else:
+                helper.ClickAndWait(x,y, helper.SMALL_PAUSE)
+                pyautogui.press('esc')
+                pyautogui.press('enter')
+                pyautogui.write(tagValue, interval = 0.1)
+                helper.PauseForEffect(helper.SMALL_PAUSE)
+                xTag, yTag = helper.LocateImage('./twitterImages/tagLine.png')
+                helper.ClickAndWait(xTag, yTag + BANNER_GAP/2, helper.SMALL_PAUSE)
+            helper.LocateAndClick('./twitterImages/done.png', helper.SMALL_PAUSE)
+        else:
+            print("Tagging not Possible")
   
     # Add text (Always at the end, else the links can change a lot of things
     pyautogui.write(inputJSON["text"], interval = 0.1)
 
 
-    # # Tweet It Since its Ready
-    # helper.PauseForEffect(helper.WAIT_WINDOW)
-    # helper.LocateAndClick('./twitterImages/tweet.png', helper.WAIT_WINDOW)
+    # Tweet It Since its Ready
+    helper.PauseForEffect(helper.WAIT_WINDOW)
+    helper.LocateAndClick('./twitterImages/tweet.png', helper.WAIT_WINDOW)
     
     
     helper.PauseForEffect(helper.SMALL_PAUSE)
@@ -146,7 +144,7 @@ def post(inputJSON):
     # Attach Image
     if "images" in inputJSON:
         # Add Image from Windows
-        GoToImportPage()
+        helper.GoToImportPage()
         helper.LocateAndClick('./common/cancel.png', helper.SMALL_PAUSE)
         CheckForImageQuantity(inputJSON["images"])
         helper.DeleteAllImages(inputJSON["images"])

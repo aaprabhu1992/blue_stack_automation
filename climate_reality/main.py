@@ -68,8 +68,8 @@ if x != None and y != None:
 helper.LocateAndClick('./common/maximize.png', helper.SMALL_PAUSE)
 
 
-# twitterPost.post(twitterJSON)
-# linkedInPost.post(linkedinJSON)
+twitterPost.post(twitterJSON)
+linkedInPost.post(linkedinJSON)
 facebookPost.post(facebookJSON)
 
 
