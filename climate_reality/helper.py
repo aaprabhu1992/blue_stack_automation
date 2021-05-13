@@ -11,6 +11,11 @@ LARGE_PAUSE = 20
 WAIT_WINDOW = 40
 
 
+def Scroll(distance, occurence):
+    for i in range(0,occurence):
+        pyautogui.scroll(distance)
+
+
 
 def PrettyPrintJSON(jsonObj, jsonIndent = 3):
     print(json.dumps(jsonObj, indent = jsonIndent))

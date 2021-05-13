@@ -13,7 +13,7 @@ MAX_IMAGES_FACEBOOK = 2
 SCROLL_LENGTH = 300
 
 PROFILE_LOCATION_X = 200
-
+TOTAL_TEXT_IMAGES = 3
 def CheckForImageQuantity(allLocations):
     if len(allLocations) > MAX_IMAGES_FACEBOOK:
         print("Too many Images")
@@ -26,7 +26,21 @@ def LeavePage():
         helper.LocateAndClick('./facebookImages/back.png', helper.SMALL_PAUSE)
         helper.LocateAndClick('./facebookImages/home.png', helper.SMALL_PAUSE)
 
-
+def LocateAddText():
+    baseLocation = './facebookImages/text_'
+    finalLocation = ""
+    for i in range (1, TOTAL_TEXT_IMAGES + 1):
+        imageLocation = baseLocation + str(i).zfill(2) + ".png"
+        x, y = helper.LocateImage(imageLocation)
+        if x != None and y != None:
+            finalLocation = imageLocation
+            break
+    if finalLocation:
+        helper.LocateAndClick(finalLocation, helper.MEDIUM_PAUSE)
+    else:
+        print("No images match the search")
+        exit(1)
+    
 def GotToPage(username):
     helper.LocateAndClick('./facebookImages/menu.png', helper.MEDIUM_PAUSE)
     helper.LocateAndClick(username + "_facebook.png", helper.MEDIUM_PAUSE)
@@ -55,6 +69,8 @@ def post(inputJSON):
         helper.LocateAndClick('./facebookImages/facebookLogo.png', helper.MEDIUM_PAUSE)
 
 
+    helper.Scroll(-100, 2)
+    helper.PauseForEffect(helper.SMALL_PAUSE)
     # Start Post
     helper.LocateAndClick('./facebookImages/create.png', helper.MEDIUM_PAUSE)
     
@@ -71,7 +87,7 @@ def post(inputJSON):
         
   
     # Add text (Always at the end, else the links can change a lot of things
-    helper.LocateAndClick('./facebookImages/text.png', helper.MEDIUM_PAUSE)    
+    LocateAddText()
     pyautogui.write(inputJSON["text"], interval = 0.1)
 
 

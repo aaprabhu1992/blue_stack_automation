@@ -71,6 +71,10 @@ def post(inputJSON):
     helper.PauseForEffect(3)
     # Switch user
     SwitchUser(inputJSON["user"])
+    # Start
+    helper.LocateAndClick('./twitterImages/startNew.png', helper.SMALL_PAUSE)
+    
+    
     # Start Tweet
     helper.LocateAndClick('./twitterImages/tweetButton.png', helper.MEDIUM_PAUSE)
     

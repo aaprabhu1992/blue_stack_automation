@@ -67,9 +67,11 @@ if x != None and y != None:
     helper.LocateAndClick('./common/restore.png', helper.SMALL_PAUSE)
 helper.LocateAndClick('./common/maximize.png', helper.SMALL_PAUSE)
 
-
-twitterPost.post(twitterJSON)
-linkedInPost.post(linkedinJSON)
-facebookPost.post(facebookJSON)
-
-
+if twitterJSON:
+    twitterPost.post(twitterJSON)
+    
+if linkedinJSON:
+    linkedInPost.post(linkedinJSON)
+    
+if facebookJSON:
+    facebookPost.post(facebookJSON)
